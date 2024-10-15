@@ -1,4 +1,6 @@
 enum Direction { north, east, south, west }
+// enum can have method, constructor, instance
+// _ in dart this protected/private variable
 
 class Robot {
   int x, y;

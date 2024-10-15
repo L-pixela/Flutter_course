@@ -37,8 +37,7 @@ class Bracket {
 }
 
 void main() {
-  String run = "good";
-
+  String run = "[{{good}}]";
   Bracket test = Bracket(run);
   if (test.testString(run) == true) {
     print("Balanced!");
