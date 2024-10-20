@@ -15,7 +15,6 @@ class Distance {
     return "Distance = ${_distance}cms";
   }
 
-  @override
   Distance operator +(covariant Distance d) {
     return Distance.cms(this._distance + d._distance);
   }

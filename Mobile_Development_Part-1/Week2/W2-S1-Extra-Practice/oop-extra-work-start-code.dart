@@ -1,9 +1,25 @@
+enum Position {
+  top("Top of"),
+  left("Left side"),
+  right("Right Side"),
+  behind("Behind of"),
+  next_to("Next to"),
+  front("Front of");
+
+  final String position;
+  const Position(this.position);
+  String toString() => position;
+}
+
 // Class Tree
 class Tree {
   String type;
   double height;
-
-  Tree(this.type, this.height);
+  Position position;
+  Tree(
+      {required this.type,
+      required this.height,
+      this.position = Position.next_to});
 }
 
 class Window {
@@ -11,7 +27,13 @@ class Window {
   double width;
   double height;
   String color;
-  Window(this.type, this.width, this.height, this.color);
+  Position position;
+  Window(
+      {required this.type,
+      required this.width,
+      required this.height,
+      required this.color,
+      this.position = Position.front});
 }
 
 class Door {
@@ -19,13 +41,20 @@ class Door {
   double width;
   double height;
   String color;
-  Door(this.type, this.width, this.height, this.color);
+  Position position;
+  Door(
+      {required this.type,
+      required this.width,
+      required this.height,
+      required this.color,
+      this.position = Position.front});
 }
 
 class Roof {
   String type;
   String color;
-  Roof(this.type, this.color);
+  Position position;
+  Roof({required this.type, required this.color, this.position = Position.top});
 }
 
 // Class House
@@ -61,10 +90,11 @@ class House {
 }
 
 void main() {
-  Tree appleTree = new Tree("Apple", 2);
-  Door h1Door = new Door("Normal", 1, 2, "Wooden");
-  Window w1 = new Window("Sliding", 2, 1.5, "White");
-  Roof houseRoof = Roof('Gable', 'Gray');
+  Tree appleTree = new Tree(type: "Apple", height: 2);
+  Door h1Door = new Door(type: "Normal", width: 1, height: 2, color: "Wooden");
+  Window w1 =
+      new Window(type: "Sliding", height: 0.5, width: 2, color: "White");
+  Roof houseRoof = Roof(type: 'Gable', color: 'Gray');
 
   House h1 = new House("Phnom Penh");
   h1.addDoor(h1Door);
