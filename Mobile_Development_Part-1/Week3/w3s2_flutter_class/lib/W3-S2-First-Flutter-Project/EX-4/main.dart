@@ -39,11 +39,7 @@ class Exercise3 extends StatelessWidget {
             start: Colors.blue,
             end: Colors.green,
           ),
-          CustomCard(
-            text: 'Button 6!!!!!',
-            start: Colors.green,
-            end: Colors.purple,
-          ),
+          CustomCard(text: 'Button 6!!!!!'),
         ],
       )),
     );
@@ -55,7 +51,10 @@ class CustomCard extends StatelessWidget {
   final Color start;
   final Color end;
   const CustomCard(
-      {super.key, required this.text, required this.start, required this.end});
+      {super.key,
+      required this.text,
+      this.start = Colors.brown,
+      this.end = Colors.green});
   @override
   Widget build(BuildContext context) {
     return Container(
