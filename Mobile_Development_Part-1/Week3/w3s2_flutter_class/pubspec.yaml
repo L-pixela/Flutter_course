@@ -60,20 +60,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/dart.png
-    - assets/images/flutter.png
-    - assets/images/firebase.png
-    - assets/dice-w4-s2/dice-1.png
-    - assets/dice-w4-s2/dice-2.png
-    - assets/dice-w4-s2/dice-3.png
-    - assets/dice-w4-s2/dice-4.png
-    - assets/dice-w4-s2/dice-5.png
-    - assets/dice-w4-s2/dice-6.png
-    - assets/weather_bonus/partly_cloudy.png
-    - assets/weather_bonus/partly_cloudy.png
-    - assets/weather_bonus/rainy.png
-    - assets/weather_bonus/sunny.png
-    - assets/weather_bonus/snowy.png
+    - assets/images/
+    - assets/dice-w4-s2/
+    - assets/weather_bonus/
+    - assets/season/
+    - assets/w4-s2/
     # - assets/dart.png
     # - assets/firebase.png
     #  - assets/flutter-logo.png
