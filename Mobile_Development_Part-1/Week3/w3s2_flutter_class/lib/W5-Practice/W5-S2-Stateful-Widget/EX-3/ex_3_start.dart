@@ -31,7 +31,7 @@ class _ImageSliderState extends State<ImageSlider> {
             tooltip: 'Go to the previous image',
             onPressed: () => {
               setState(() {
-                counter = (counter + 3) % 4;
+                counter = (counter + 3) % 5;
               })
             },
           ),
@@ -42,7 +42,7 @@ class _ImageSliderState extends State<ImageSlider> {
               tooltip: 'Go to the next image',
               onPressed: () => {
                 setState(() {
-                  counter = (counter + 1) % 4;
+                  counter = (counter + 1) % 5;
                 })
               },
             ),
