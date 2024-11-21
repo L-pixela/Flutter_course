@@ -66,6 +66,7 @@ flutter:
     - assets/season/
     - assets/w4-s2/
     - assets/W6-S2-images/
+    - assets/W7-S2-flutter-quiz/
     # - assets/dart.png
     # - assets/firebase.png
     #  - assets/flutter-logo.png
