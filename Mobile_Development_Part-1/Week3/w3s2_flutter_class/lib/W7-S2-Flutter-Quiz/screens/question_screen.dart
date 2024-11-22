@@ -15,7 +15,7 @@ class QuestionScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.only(left: 15),
           child: Text(
             question.title,
             style: TextStyle(
@@ -28,7 +28,7 @@ class QuestionScreen extends StatelessWidget {
             child: ElevatedButton(
                 onPressed: () => onAnswered(answer),
                 child: SizedBox(
-                  width: 100,
+                  width: 150,
                   child: Center(
                     child: Text(
                       answer,
@@ -41,6 +41,16 @@ class QuestionScreen extends StatelessWidget {
                 )),
           );
         }),
+        SizedBox(
+          height: 20,
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: ElevatedButton(
+            onPressed: () => onAnswered(''),
+            child: Text("Skip"),
+          ),
+        ),
       ],
     );
   }

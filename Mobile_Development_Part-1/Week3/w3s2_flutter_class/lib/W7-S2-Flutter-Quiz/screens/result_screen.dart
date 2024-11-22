@@ -42,43 +42,41 @@ Widget _buildQuiz(Quiz quiz, Submission submission) {
       final userAnswer = submission.getAnswerFor(question);
       final isCorrect = userAnswer != null && userAnswer.isCorrect(question);
 
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "${index + 1}",
-                      style: TextStyle(
-                          fontSize: 12,
-                          color: isCorrect ? Colors.green : Colors.red),
-                      textScaler: TextScaler.linear(5),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Text(question.title,
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
-                  ],
-                ),
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "${index + 1}",
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: isCorrect ? Colors.green : Colors.red),
+                    textScaler: TextScaler.linear(5),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Text(question.title,
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                ],
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-            ..._buildAnswer(question, submission),
-            SizedBox(
-              height: 20,
-            )
-          ],
-        ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          ..._buildAnswer(question, submission),
+          SizedBox(
+            height: 20,
+          )
+        ],
       );
     },
   );
@@ -113,7 +111,7 @@ class ResultScreen extends StatelessWidget {
             height: 350,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15), color: Colors.white),
-            margin: EdgeInsets.all(20),
+            margin: EdgeInsets.only(bottom: 20, top: 10, left: 10, right: 10),
             padding: EdgeInsets.all(8),
             child: _buildQuiz(quiz, submission)),
         SizedBox(height: 20),
