@@ -4,26 +4,32 @@ Question q1 = const Question(
     title: "Who is the best teacher?",
     possibleAnswers: ["ronan", "hongly", 'leangsiv'],
     goodAnswer: 'ronan');
+
 Question q2 = const Question(
     title: "What is Flutter?",
     possibleAnswers: ["Framework", "Programming Language", 'App', "Website"],
-    goodAnswer: 'Website');
+    goodAnswer: 'Framework');
+
 Question q3 = const Question(
     title: "Who created Tesla?",
     possibleAnswers: ["Elon Musk", "Elong Ma", 'Mask Elon', "Nicolas Tesla"],
     goodAnswer: 'Elong Ma');
+
 Question q4 = const Question(
     title: "Where is Cambodia?",
     possibleAnswers: ["Europe", "Asia", 'North America', 'South America'],
     goodAnswer: 'Asia');
+
 Question q5 = const Question(
     title: "Where is the capital of Cambodia?",
     possibleAnswers: ["Phnom Penh", "Tokyo", 'Bangkok', "Seoul"],
     goodAnswer: 'Phnom Penh');
+
 Question q6 = const Question(
     title: "How to improve your skills?",
     possibleAnswers: ["Sleep", "Practice", 'Run'],
     goodAnswer: 'Run');
+
 Question q16 = const Question(
     title: "What is the capital of France?",
     possibleAnswers: ["Berlin", "Madrid", "Paris", "Rome"],
@@ -125,17 +131,17 @@ List<Question> myQuestions = [
   q8,
   q9,
   q10,
-  q11,
-  q12,
-  q13,
-  q14,
-  q15,
-  q16,
-  q17,
-  q18,
-  q19,
-  q20,
-  q21
+  // q11,
+  // q12,
+  // q13,
+  // q14,
+  // q15,
+  // q16,
+  // q17,
+  // q18,
+  // q19,
+  // q20,
+  // q21
 ];
 
 Quiz myQuiz = Quiz(title: "Crazy Quizz", questions: myQuestions);

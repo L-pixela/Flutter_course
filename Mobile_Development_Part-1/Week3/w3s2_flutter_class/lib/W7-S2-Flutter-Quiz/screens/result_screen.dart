@@ -3,6 +3,45 @@ import 'package:w3s2_flutter_class/W7-S2-Flutter-Quiz/widgets/app_button.dart';
 import '../model/quiz.dart';
 import '../model/submission.dart';
 
+class ResultScreen extends StatelessWidget {
+  final VoidCallback onPressed;
+  final int score;
+  final Submission submission;
+  final Quiz quiz;
+  const ResultScreen(
+      {super.key,
+      required this.onPressed,
+      required this.score,
+      required this.submission,
+      required this.quiz});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            'You got: $score out of ${quiz.questions.length} pts',
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
+          ),
+        ),
+        SizedBox(height: 20),
+        Container(
+            height: 350,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15), color: Colors.white),
+            margin: EdgeInsets.only(bottom: 20, top: 10, left: 10, right: 10),
+            padding: EdgeInsets.all(8),
+            child: _buildQuiz(quiz, submission)),
+        SizedBox(height: 20),
+        AppButton(icon: Icons.restore, "Reset Quiz", onTap: onPressed),
+      ],
+    );
+  }
+}
+
 Iterable<Widget> _buildAnswer(Question question, Submission submission) {
   Answer? userAnswer = submission.getAnswerFor(question);
   return question.possibleAnswers.map((answer) {
@@ -80,43 +119,4 @@ Widget _buildQuiz(Quiz quiz, Submission submission) {
       );
     },
   );
-}
-
-class ResultScreen extends StatelessWidget {
-  final VoidCallback onPressed;
-  final int score;
-  final Submission submission;
-  final Quiz quiz;
-  const ResultScreen(
-      {super.key,
-      required this.onPressed,
-      required this.score,
-      required this.submission,
-      required this.quiz});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            'You got: $score out of ${quiz.questions.length} pts',
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
-          ),
-        ),
-        SizedBox(height: 20),
-        Container(
-            height: 350,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15), color: Colors.white),
-            margin: EdgeInsets.only(bottom: 20, top: 10, left: 10, right: 10),
-            padding: EdgeInsets.all(8),
-            child: _buildQuiz(quiz, submission)),
-        SizedBox(height: 20),
-        AppButton(icon: Icons.restore, "Reset Quiz", onTap: onPressed),
-      ],
-    );
-  }
 }

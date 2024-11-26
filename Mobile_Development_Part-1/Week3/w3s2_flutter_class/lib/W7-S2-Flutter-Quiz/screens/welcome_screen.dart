@@ -16,9 +16,9 @@ class WelcomeScreen extends StatelessWidget {
             width: 200,
             height: 200,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 30),
           Text("Welcome to the Quiz App"),
-          SizedBox(height: 20),
+          SizedBox(height: 30),
           AppButton(icon: Icons.quiz, "Start Quiz", onTap: onPressed)
         ],
       ),
