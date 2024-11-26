@@ -1,5 +1,5 @@
-import 'quiz.dart';
-import 'submission.dart';
+import 'model/quiz.dart';
+import 'model/submission.dart';
 
 void main() {
   Question q1 = const Question(
