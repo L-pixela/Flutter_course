@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:w3s2_flutter_class/W8-Practice/W8-S1-UserInput-Forms/models/expense.dart';
-import 'package:w3s2_flutter_class/W8-Practice/W8-S1-UserInput-Forms/view/expense_form.dart';
-import 'package:w3s2_flutter_class/W8-Practice/W8-S1-UserInput-Forms/view/expenses_list.dart';
 
-class ExpenseApp extends StatefulWidget {
-  const ExpenseApp({super.key});
+import '../../models/expense.dart';
+import 'expenses_form.dart';
+import 'expenses_list.dart';
+
+class Expenses extends StatefulWidget {
+  const Expenses({super.key});
 
   @override
-  State<ExpenseApp> createState() => _ExpenseAppState();
+  State<Expenses> createState() {
+    return _ExpensesState();
+  }
 }
 
-class _ExpenseAppState extends State<ExpenseApp> {
+class _ExpensesState extends State<Expenses> {
   final List<Expense> _registerExpenses = [
     Expense(
         type: ExpenseType.travel,
@@ -50,7 +53,7 @@ class _ExpenseAppState extends State<ExpenseApp> {
     setState(() {
       showModalBottomSheet(
         context: context,
-        builder: (ctx) => ExpenseForm(onSubmit: _addExpense),
+        builder: (ctx) => ExpenseForm(onCreated: _addExpense),
       );
     });
   }
@@ -72,13 +75,9 @@ class _ExpenseAppState extends State<ExpenseApp> {
             ),
           ],
         ),
-        body: _registerExpenses.isEmpty
-            ? Center(
-                child: Text("No Expenses Registered"),
-              )
-            : ExpensesList(
-                expenses: _registerExpenses,
-                removeExpense: _removeExpense,
-              ));
+        body: ExpensesList(
+          expenses: _registerExpenses,
+          onRemoveExpense: _removeExpense,
+        ));
   }
 }

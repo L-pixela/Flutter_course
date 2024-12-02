@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:w3s2_flutter_class/W8-Practice/W8-S1-UserInput-Forms/models/expense.dart';
+import '../../models/expense.dart';
 
 class ExpenseForm extends StatefulWidget {
-  final Function(Expense) onSubmit;
-  const ExpenseForm({super.key, required this.onSubmit});
+  const ExpenseForm({super.key, required this.onCreated});
+
+  final Function(Expense) onCreated;
 
   @override
   State<ExpenseForm> createState() => _ExpenseFormState();
@@ -18,6 +19,13 @@ class _ExpenseFormState extends State<ExpenseForm> {
   DateTime? selectedDate;
   bool isTimeSelected = false;
 
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _amountController.dispose();
+    super.dispose();
+  }
+
   void onCancel() {
     Navigator.pop(context);
   }
@@ -25,7 +33,6 @@ class _ExpenseFormState extends State<ExpenseForm> {
   void onSubmit() {
     final String title = _titleController.text;
     final double amount = double.parse(_amountController.text);
-    bool isTitleFilled = title.isEmpty;
 
     Expense expense = Expense(
         title: title,
@@ -33,29 +40,11 @@ class _ExpenseFormState extends State<ExpenseForm> {
         date: selectedDate!,
         type: _selectedExpenseType!);
     if (title.isEmpty) {
-      _showMyDialog(false, context);
+      Navigator.pop(context);
     } else {
-      widget.onSubmit(expense);
+      widget.onCreated(expense);
       Navigator.pop(context);
     }
-  }
-
-  Future<void> _showMyDialog(bool isFormFilled, BuildContext context) async {
-    return showDialog<void>(
-        context: context,
-        barrierDismissible: isFormFilled,
-        builder: (BuildContext context) => AlertDialog(
-              title: Text("Invalid Input"),
-              content: isFormFilled
-                  ? Text("Title is empty, Please Input your title!")
-                  : Text(
-                      "Amount can't be Negative, Please Input positive amount only!"),
-              actions: <Widget>[
-                TextButton(
-                    onPressed: () => Navigator.pop(context, "OK"),
-                    child: Text("OK"))
-              ],
-            ));
   }
 
   @override
@@ -144,7 +133,8 @@ class _ExpenseFormState extends State<ExpenseForm> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(onPressed: onCancel, child: Text("Cancel")),
-                ElevatedButton(onPressed: onSubmit, child: Text("Add")),
+                ElevatedButton(
+                    onPressed: onSubmit, child: Text("Add New Expense")),
               ],
             )
           ],
