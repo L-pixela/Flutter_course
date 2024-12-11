@@ -1,3 +1,5 @@
+import 'package:journal_diary_app/model/mood_tracker.dart';
+
 import '../model/journal.dart';
 
 List<Journal> journals = [
@@ -18,3 +20,5 @@ List<Journal> journals = [
     mood: MoodType.sad,
   ),
 ];
+
+List<MoodTracker> moodTrackers = [];

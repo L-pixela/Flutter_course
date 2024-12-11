@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:journal_diary_app/model/journal.dart';
+import 'package:journal_diary_app/model/mood_tracker.dart';
 import 'package:journal_diary_app/view/journal_screen.dart';
 import 'package:journal_diary_app/view/welcome_page.dart';
+
+import '../database/data.dart';
 
 class JournalApp extends StatefulWidget {
   const JournalApp({super.key});

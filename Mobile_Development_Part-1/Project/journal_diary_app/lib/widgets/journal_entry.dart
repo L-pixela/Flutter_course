@@ -58,27 +58,10 @@ class _JournalEntryState extends State<JournalEntry> {
               child: TextFormField(
                 controller: _titleController,
                 decoration: InputDecoration(
-                    labelText: "Your Journal Title",
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.title)),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter title';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                controller: _contentController,
-                maxLines: 15,
-                decoration: InputDecoration(
-                    labelText: "Content",
-                    hintText: "How was your day?",
+                    border: InputBorder.none,
+                    hintText: "Your Journal Title",
                     alignLabelWithHint: true,
-                    border: OutlineInputBorder()),
+                    prefixIcon: Icon(Icons.title)),
               ),
             ),
             Row(
@@ -112,6 +95,18 @@ class _JournalEntryState extends State<JournalEntry> {
                 ),
                 Expanded(child: SizedBox())
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _contentController,
+                maxLines: 18,
+                decoration: InputDecoration(
+                  hintText: "How was your day?",
+                  alignLabelWithHint: true,
+                  border: InputBorder.none,
+                ),
+              ),
             ),
             AppButton(onTap: _saveEntry, buttonTitle: "Submit")
           ],
