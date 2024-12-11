@@ -25,37 +25,45 @@ class _ExpenseFormState extends State<ExpenseForm> {
   void onSubmit() {
     final String title = _titleController.text;
     final double amount = double.parse(_amountController.text);
-    bool isTitleFilled = title.isEmpty;
 
-    Expense expense = Expense(
-        title: title,
-        amount: amount,
-        date: selectedDate!,
-        type: _selectedExpenseType!);
-    if (title.isEmpty) {
-      _showMyDialog(false, context);
-    } else {
+    bool isTitleValid = title.trim().isNotEmpty;
+    bool isAmountValid = amount > 0;
+    bool valid = isTitleValid && isAmountValid;
+
+    if (valid) {
+      Expense expense = Expense(
+          title: title,
+          amount: amount,
+          date: selectedDate!,
+          type: _selectedExpenseType!);
+
       widget.onSubmit(expense);
-      Navigator.pop(context);
-    }
-  }
 
-  Future<void> _showMyDialog(bool isFormFilled, BuildContext context) async {
-    return showDialog<void>(
+      // 3.3- Close modal
+      Navigator.pop(context);
+    } else {
+      // 4.1 Compute the error message
+      String errorMessage = !isTitleValid
+          ? "The title cannot be empty"
+          : "The amount shall be a positive number";
+
+      // 4.2 Show error
+      showDialog(
         context: context,
-        barrierDismissible: isFormFilled,
-        builder: (BuildContext context) => AlertDialog(
-              title: Text("Invalid Input"),
-              content: isFormFilled
-                  ? Text("Title is empty, Please Input your title!")
-                  : Text(
-                      "Amount can't be Negative, Please Input positive amount only!"),
-              actions: <Widget>[
-                TextButton(
-                    onPressed: () => Navigator.pop(context, "OK"),
-                    child: Text("OK"))
-              ],
-            ));
+        builder: (ctx) => AlertDialog(
+          title: const Text('Invalid input'),
+          content: Text(errorMessage),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text('Okay'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   @override
@@ -79,7 +87,8 @@ class _ExpenseFormState extends State<ExpenseForm> {
               padding: const EdgeInsets.all(8.0),
               child: TextField(
                 controller: _amountController,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.numberWithOptions(
+                    signed: true, decimal: true),
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
                 ],
